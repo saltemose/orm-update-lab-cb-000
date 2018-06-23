@@ -48,8 +48,15 @@ class Student
     student = self.new(name, grade)
     student
   end
-      
 
+  def self.find_by_name(name)
+    sql = <<-SQL
+      SELECT * FROM students where name = ?
+    SQL
+    db_student = DB[:conn].execute(sql, name)
+    self.new_from_db(db_student)
+  end
+    
   # Remember, you can access your database connection anywhere in this class
   #  with DB[:conn]
 
