@@ -54,7 +54,8 @@ class Student
       SELECT * FROM students where name = ?
     SQL
     db_student = DB[:conn].execute(sql, name)
-    self.new_from_db(db_student)
+    student = self.new_from_db(db_student)
+    student 
   end
 
   # Remember, you can access your database connection anywhere in this class
